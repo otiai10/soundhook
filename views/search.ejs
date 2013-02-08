@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="javascripts/search_ui_action.js"></script>
+<div class="wrapper">
+
+  <div id="main-container" class="main-container">
+    <!-- this is test -->
+    <h1> search result</h1>
+    <table class="table table-stripped table-hover">
+      <tbody>
+        <% test.forEach(function(hoge){ %>
+          <tr class="<%=hoge.hash%>">
+            <td class="sample <%=hoge.hash%>">
+              <object
+                type="application/x-shockwave-flash"
+                id="player"
+                data="http://www.youtube.com/v/<%= hoge.hash %>?enablejsapi=1&playerapiid=player&fmt=18"
+                width="260"
+                height="221"
+              >
+                <param name="allowScriptAccess" value="always">
+              </object>
+            </td>
+            <td class="meta_info <%=hoge.hash%>">
+              <button
+                class="btn btn-info pull_btn btn-block <%=hoge.hash%>"
+                hash="<%=hoge.hash %>"
+                title="<%=hoge.title %>"
+                owner_id="<%=session.user_profile.id%>"
+                pushed_by="<%=session.user_profile.screen_name%>"
+                from="<%=from_service%>"
+                style="width:70%;"
+              ><small><%=hoge.title%></small><br><b>Add this to your playlist</b>
+              </button>
+            </td>
+          </tr>
+        <% }) %> 
+      </tbody>
+    </table>
+  </div>
+
+</div><!--/.wrapper-->

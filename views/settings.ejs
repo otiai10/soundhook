@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="javascripts/settings_ui_action.js"></script>
+<div class="wrapper">
+
+  <div id="main-container" class="main-container">
+    <h1>your Settings</h1>
+    <table class="table table-stripped table-hover">
+      <tbody>
+        <tr><th>Name</th><th>How many mixes per 1 access</th><th>Words you wanna reject</th><th width="200px">action</th></tr>
+        <tr>
+          <td>
+            <span class="lead"><%=info.name%></span>
+          </td>
+          <td>
+            <select id="mix_level">
+              <% for(var i=1; i<31; i++){ %>
+                <% if(i == info.mix_level){ %>
+                  <option selected><%=i%></option>
+                <% }else{ %>
+                  <option><%=i%></option>
+                <%}%>
+              <%}%>
+            </select>
+          </td>
+          <td>
+            <% if(info.ng_word){ %>
+              <!-- input type="text" id="ng_word" value="<%=info.ng_word%>"/ -->
+              <input type="text" id="ng_word" value="" placeholder="sorry now on developping..." disabled>
+            <%}else{%>
+              <input type="text" id="ng_word" value="" placeholder="sorry now on developping..." disabled>
+            <%}%>
+          </td>
+          <td id="action_td">
+            <button class="btn btn-primary commit_btn">commit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div><!--/.wrapper-->

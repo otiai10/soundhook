@@ -1,0 +1,48 @@
+#!/bin/sh
+
+col=$'\e[01;36m'
+def=$'\e[0m'
+
+if [ $# = 0 ]; then
+    echo "\nOption Required"
+    echo " --start : to start soundhook"
+    echo " --stop  : to stop  soundhook\n\n"
+    exit;
+fi
+
+if [ $1 = '--restart' ]; then
+    echo "\n\n - stopping SoundHook\n\n"
+    kill -9 `ps aux | grep cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
+    kill -9 `ps aux | grep cron_set/cron.sh | grep -v grep | awk {'print $2'}`
+    kill -9 `pgrep node`
+    echo "\n\n - starting SoundHook\n\n"
+    nohup node app.js > log/node.log &
+    nohup sh cron_set/watcher.sh > log/watcher.log &
+    nohup sh cron_set/cron.sh > log/cron.log &
+elif [ $1 = '--start' ]; then
+    nohup node app.js > log/node.log &
+    nohup sh cron_set/watcher.sh > log/watcher.log &
+    nohup sh cron_set/cron.sh > log/cron.log &
+    echo " -- now starting SoundHook\n\n"
+    exit
+elif [ $1 = '--state' ]; then
+    echo `ps aux | grep cron_set/watcher.sh | grep -v grep`
+    echo `ps aux | grep cron_set/cron.sh | grep -v grep`
+    echo `ps aux | grep node | grep -v grep`
+    exit;
+elif [ $1 = '--stop' ]; then
+    kill -9 `ps aux | grep cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
+    kill -9 `ps aux | grep cron_set/cron.sh | grep -v grep | awk {'print $2'}`
+    kill -9 `pgrep node`
+    echo "\n\n -- now stoped SoundHook \n\n"
+    exit;
+elif [ $1 = '--help' ]; then
+    echo " Options\n"
+    echo "  --start"
+    echo "  --state"
+    echo "  --restart"
+    echo "  --stop\n"
+else
+    echo "illeagal option\n"
+fi
+

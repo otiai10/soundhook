@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="javascripts/listory_ui_action.js"></script>
+<link rel="stylesheet" href="stylesheets/listory.css" type="text/css"/>
+<div class="wrapper">
+
+  <div id="main-container" class="main-container">
+    <h1>Listory - all your list history</h1>
+    <small>You can remove what on list, and pull back what removed. Use "DELETE ALL" when you want to clear your listory.</small>
+    <table class="table table-stripped table-hover">
+      <tbody>
+        <tr>
+          <th colspan="2" style="text-align:center;">title</th><th width="150px">pushed by</th><th width="100px">status</th>
+        </tr>
+        <% list.forEach(function(music){ %>
+          <tr class="<%=music.id%>" name="<%=music.id%>">
+            <td><a href="http://youtu.be/<%=music.hash%>" target="_blank"><img src="http://i.ytimg.com/vi/<%=music.hash%>/1.jpg" width="50px"></a></td>
+            <td><a class="" href="http://youtu.be/<%=music.hash%>" target="_blank"><%=music.title%></a></td>
+            <td>
+              <% if(music.pushed_by !== ''){ %>
+                <% if(music.pushed_by == session.user_profile.screen_name){ %>
+                  --
+                <% }else{ %>
+                  <a href="https://twitter.com/<%=music.pushed_by%>" target="_blank">@<%=music.pushed_by%></a>
+                <% } %>
+              <% }else{ %>
+                --
+              <% } %>
+            </td>
+            <td>
+              <span class="pull_btn_area<%=music.id%>">
+                <% if(music.stashed === 1){ %>
+                  <div class="lead removed status" act="pull_back" id="<%=music.id%>">removed</div>
+                  <button class="action_btn pull_back_this btn btn-info btn-mini" action_id="<%=music.id%>"><small><b>pull back</b></small></button>
+                <% }else{ %>
+                  <div class="lead on_list status" act="remove" id="<%=music.id%>">on list</div>
+                  <button class="action_btn remove_this btn btn-danger btn-mini" action_id="<%=music.id%>"><small><b>remove</b></small></button>
+                <% } %>
+              </span>
+            </td>
+          </tr>
+        <% }) %> 
+      </tbody>
+    </table>
+    <div id="delete_all">
+      <a href="#DELTE_ALL_CONFIRM" roll="button" data-toggle="modal" class="delete_all btn btn-danger btn-large">DELETE ALL?</a>
+      <div class="modal hide fade in" id="DELTE_ALL_CONFIRM" tabindex="-1" role="dialog" aria-labelledby="DELTE_ALL_CONFIRMLabel" aria-hidden="true">
+       <div class="well well-large" style="margin:0">
+         <h3>!!!注意!!!</h3>
+         <h2>この操作は取り消せません!</h2>
+         <h2>本当に全削除しますか？(´・ω・`)</h2>
+         <button class="btn btn-danger" id="delete_confirmed">YES, DELETE</button>
+         <!-- -->ｱﾜﾜ ヽ(´Д｀;≡;´Д｀)丿 ｱﾜﾜ<!-- -->
+         <button class="btn" data-dismiss="modal">思いとどまる</button>
+       </div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!--/.wrapper-->

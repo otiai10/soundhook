@@ -1,0 +1,5 @@
+# .gitignore
+
+log/
+cli/
+my_modules/conf.js

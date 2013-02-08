@@ -1,0 +1,36 @@
+/**
+ *  listory.css
+**/
+
+body {
+  background-attachment:fixed;
+}
+
+.action {
+  color: #aaa;
+}
+
+.removed {
+  font-size: small;
+}
+
+.on_list {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.status {
+  text-shadow: 0 1px 0 #fff;
+  -webkit-transition:all 0.1s linear;
+}
+
+.status:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  text-shadow: 0 1px 0 #fff,
+            0 0 3px #fff;
+}
+
+div#delete_all {
+  text-align: center;
+}

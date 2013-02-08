@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="javascripts/japanese.js"></script>
+<script type="text/javascript" src="javascripts/home_ui_action.js"></script>
+<div id="contents-wrapper" class="wrapper">
+
+  <div id="main-container" class="main-container">
+    <% if(!session.user_profile){ %>
+    <!-- this is not-logined visit -->
+      <div class="inline_center">
+        <a id="signin_first" class="btn btn-large btn-info" href="/auth/twitter"><b>Sign in with twitter</b></a>
+        <br>
+        <br>
+        <!-- Button to trigger modal -->
+        <a id="foot_title" href="#myModal" role="button" class="footer" data-toggle="modal">What is "SoundHook"?</a>
+        <!-- Modal -->
+        <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header" style="text-align:left">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+            <h3 id="myModalLabel" class="lead"><b>Introductions</b></h3>
+          </div>
+          <div class="modal-body" style="text-align:left"> 
+            <p class="lead">流動的BGMメーカー、SoundHookちゃんですぞ！</p>
+            <ul>
+              <li>Youtubeに転がってる曲で自分だけのプレイリストを作れます</li>
+              <li>作業用BGMとして聞き流していると、ときどき知らない曲が紛れ込んできたりします</li>
+              <li>「いいかもー」と思ったらその場で"Hook"(フック)してプレイリストに取り込めます</li>
+              <li>ひまなときは「Radio Mode」で知らない曲ばっかり聞いてみると良い出会いがあったりなかったり</li>
+              <li><img id="in_modal_thumbnail" src="images/soundhook.png"> - <a href="https://twitter.com/sound_hook" target="_blank">@sound_hook</a> on Twitter</li>
+            </ul>
+            <small>Copyright otiai10 All right reserved</small>
+          </div><!--/.modal-body -->
+          <div class="modal-footer">
+            <a href="http://otiai10.com/products/soundhook/" target="_blank">More about soundhoook?</a>
+          </div><!--/.modal-footer-->
+        </div>
+      </div><!--/.inline_center-->
+    <%}else{%>
+    <!-- logined visit -->
+      <div class="" id="playlist01">
+        <ul class="unstyled">
+          <li>
+            <span id="indx_num" class="lead m_title"></span><span class="lead m_title"> -- </span><span id="music-title" class="lead m_title"></span>
+            <span class="pull_btn_area" style="float:right;"></span>
+            <hr>
+          </li>
+          <li>
+            <table id="controler">
+              <tbody>
+                <tr calss="tb_hover_ignore">
+                  <td><button id="prev_btn" class="btn ready"><i class="icon-step-backward"></i></button></td>
+                  <td><button id="play_btn" class="btn ready"><i class="icon-play"></i></button></td>
+                  <td id="twitter_btn">
+                    <button id="tweet_to_share" class="btn ready"><img src="images/twitter-logo-2.png"/></button>
+                  </td>
+                  <td id="repeat_mode">
+                    <button id="switch_repeat_mode" class="btn ready" enabled="0"><img src="images/repeat-1.png"/></button>
+                  </td>
+                  <td><button id="info_btn" class="btn ready"><i class="icon-resize-small"></i></button></td>
+                  <td><button id="next_btn" class="btn ready"><i class="icon-step-forward"></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+          <li>
+            <div id="video_tl_container">
+              <div id="video_container">
+                <div id="video"></div>
+              </div>
+              <div id="tl_container">
+                <!-- a class="twitter-timeline" href="https://twitter.com/search?q=%23nowplaying" data-widget-id="270891477243142146">#nowplaying に関するツイート</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script-->
+
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    <%}%>
+  </div><!--/.main-container-->
+</div>

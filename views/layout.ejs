@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <!--script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/common.css"/>
+    <link rel="shorcut icon" href="images/fav.ico"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="keywords" content="Sound,sound,Hook,hook,soundhook,SoundHook">
+    <meta name="description" content="流動的BGMメーカー、SoundHookちゃんですぞ！ 自分のお気に入り曲でプレイリストが作れるものの、一曲だけ知らない曲が混じってきちゃうドジっ子機能付き☆（ゝω・）v">
+    <meta property="og:title" content="SoundHook - soundhook.net"/>
+    <meta property="og:url" content="http://soundhook.net"/>
+    <meta property="og:description" content="流動的BGMメーカー、SoundHookちゃんですぞ！ 自分のお気に入り曲でプレイリストが作れるものの、一曲だけ知らない曲が混じってきちゃうドジっ子機能付き☆（ゝω・）v">
+    <meta property="og:image" content="http://soundhook.net/images/soundhook.png"/>
+  </head>
+  <body>
+    <% if(rurl.match('dev')){ %><h1><%=rurl%></h1><% } %>
+    <!--div class="navbar navbar-fixed-top"-->
+    <div class="navbar wrapper">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="<%=rurl%>"><span class="lead um">SoundHook  <small>ver0.9.7</small></span></a>
+          <ul class="nav pull-right">
+            <% if(session.user_profile){ %>
+              <li>
+                <form class="navbar-search pull-right" action="/search">
+                  <input type="text" name="qu" class="search-query" placeholder="youtube-search">
+                </form>
+              </li>
+              <li id="fat-menu" class="dropdown">
+                <a  href="#" id="drop_account" role="button" class="um dropdown-toggle" data-toggle="dropdown">
+                  <img src="http://api.twitter.com/1/users/profile_image/<%=session.user_profile.screen_name%>" height="20px"/>
+                  <%=session.user_profile.screen_name%><b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu hide" role="menu" arial-labeledby="drop_account">
+                  <li>
+                    <a tabindex="-1" href="<%=rurl%>listory">listory</a>
+                  </li>
+                  <li>
+                    <a tabindex="-1" href="<%=rurl%>settings">settings</a>
+                  </li>
+                  <li>
+                    <a tabindex="-1" href="<%=rurl%>">home</a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a tabindex="-1" href="<%=rurl%>signout">sign out</a>
+                  </li>
+                </ul>
+              </li>
+            <% }else{ %>
+              <li><a class="um" href="<%=rurl%>auth/twitter">sign in</a></li>
+            <% } %>
+          </ul>
+        </div><!--/.container-->
+      </div><!--/.navbar-inner-->
+    </div><!--/.navbar navbar-fixed-top-->
+    <!-- /navbar -->
+
+    <% if(session.user_profile){ %>
+        <!-- TODO:home以外のときはこれ出さない-->
+        <% if(title.match('-')){ %><!-- llist-changer and indicator --><!-- do not show --> <% }else{ %>
+        <!-- list-changer -->
+        <div id="list-changer" class="wrapper">
+          <ul class="ul-list-changer">
+            <li class="tab_li active">
+              <a id="list0" class="tab_anc" list="0" href="#" rel="tooltip" data-original-title="Your playlist" data-placement="left"><img src="/images/glyphicons/png/glyphicons_158_playlist.png"/></a>
+            </li>
+            <li class="tab_li">
+              <a class="tab_anc" list="100" href="#" rel="tooltip" data-original-title="Radio Mode" data-placement="left"><img id="img_radio_mode" src="/images/glyphicons/png/glyphicons_032_wifi_alt.png"/></a>
+            </li>
+          </ul>
+        </div><!-- /list-changer -->
+        <!--list-indicator-->
+        <div id="list-indicator" class="wrapper">
+          <div id="indicator"></div>
+        </div><!--/list-indicator-->
+        <% } %>
+    <% } %>
+
+    <!-- BODY -->
+    <%- body %>
+    <!-- /BODY -->
+
+    <div id="footer"><!-- #footer -->
+      <hr class="in_footer">
+      <ul class="ul footer">
+        <% if(session.user_profile){%>
+        <li class="li footer" style="text-align:right">
+          <!-- Button to trigger modal -->
+          <a id="foot_title" href="#myModal" role="button" class="footer" data-toggle="modal">SoundHook</a><br>
+        </li>
+        <%}%>
+        <li class="li footer">
+          <a href="http://otiai10.com/" target="_blank" class="footer">運営について</a>
+        </li>
+        <li class="li footer">
+          <a href="https://twitter.com/otiai10" class="footer">お問い合わせ</a>
+        </li>
+        <li class="li footer">
+          <a href="./privacypolicy" class="footer">プライバシーポリシー</a>
+        </li>
+        <li class="li footer">
+          <a href="./usepolicy" class="footer">利用規約</a>
+        </li>
+      </ul>
+      <br><span style="text-align:right" class="footer">Copyright © 2012 otiai10</span>
+    </div><!-- /#footer -->
+
+    <!-- div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+        <h3 id="myModalLabel" class="lead"><b>Introductions</b></h3>
+      </div><!-- /.modal-header -->
+      <div class="modal-body">
+        <p class="lead">流動的BGMメーカー、SoundHookちゃんですぞ！</p>
+        <ul>
+          <li>Youtubeに転がってる曲で自分だけのプレイリストを作れます</li>
+          <li>作業用BGMとして聞き流していると、ときどき知らない曲が紛れ込んできたりします</li>
+          <li>「いいかもー」と思ったらその場で"Hook"(フック)してプレイリストに取り込めます</li>
+          <li>ひまなときは「Radio Mode」で知らない曲ばっかり聞いてみると良い出会いがあったりなかったり</li>
+          <li><img id="in_modal_thumbnail" src="images/soundhook.png"> - <a href="https://twitter.com/sound_hook" target="_blank">@sound_hook</a> on Twitter</li>
+        </ul>
+        <small>Copyright otiai10 All right reserved</small>
+      </div><!-- /.modal-body -->
+      <div class="modal-footer">
+        <a href="http://otiai10.com/products/soundhook/" target="_blank">More about soundhoook</a>
+      </div>
+    </div>
+
+  </body>
+</html>
