@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <script type="text/javascript" src="javascripts/japanese.js"></script>
 <script type="text/javascript" src="javascripts/home_ui_action.js"></script>
-<div id="contents-wrapper" class="wrapper">
+<link rel="stylesheet" href="stylesheets/index.css">
 
-  <div id="main-container" class="main-container">
+<% if(session.user_profile){ %>
+    <% if(title.match('-')){ %>
+    <% }else{ %>
+    <!-- list-changer -->
+    <div id="list-changer" class="wrapper">
+      <ul class="ul-list-changer">
+        <li class="tab_li active">
+          <a id="list0" class="tab_anc" list="0" href="#" rel="tooltip" data-original-title="Your playlist" data-placement="left"><img src="/images/glyphicons/png/glyphicons_158_playlist.png"/></a>
+        </li>
+        <li class="tab_li">
+          <a class="tab_anc" list="100" href="#" rel="tooltip" data-original-title="Radio Mode" data-placement="left"><img id="img_radio_mode" src="/images/glyphicons/png/glyphicons_032_wifi_alt.png"/></a>
+        </li>
+      </ul>
+    </div><!-- /list-changer -->
+    <!--list-indicator-->
+    <div id="list-indicator">
+      <div id="indicator"></div>
+    </div><!--/list-indicator-->
+    <% } %>
+<% } %>
+
     <% if(!session.user_profile){ %>
     <!-- this is not-logined visit -->
       <div class="inline_center">
@@ -67,14 +87,9 @@
                 <div id="video"></div>
               </div>
               <div id="tl_container">
-                <!-- a class="twitter-timeline" href="https://twitter.com/search?q=%23nowplaying" data-widget-id="270891477243142146">#nowplaying に関するツイート</a>
-                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script-->
-
               </div>
             </div>
           </li>
         </ul>
       </div>
     <%}%>
-  </div><!--/.main-container-->
-</div>
