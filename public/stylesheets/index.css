@@ -1,0 +1,38 @@
+/**
+ * stylesheet for index page
+**/
+
+div#list-indicator {
+    margin-bottom: 30px;
+    background-color: #eeeeee;
+}
+
+ul.twitter_ul, ul.ul-list-changer {
+  list-style-type: none;
+  display: -webkit-box;
+  display:    -moz-box;
+  display:         box;
+  position:relative;
+}
+div#list-changer {
+  margin-top:0;
+}
+ul.ul-list-changer {
+  margin: 0;
+}
+
+
+div#indicator {
+    position:relative;
+    left:0%;
+    background: -webkit-gradient(linear, left top, right bottom,
+            from(#eeeeee),
+            color-stop(0.1, #eeeeee),  
+            color-stop(0.4, #8f8f8f),  
+            color-stop(0.6, #8f8f8f),
+            color-stop(0.9, #eeeeee),  
+            to(#eeeeee));
+    width: 50%;
+    height: 2px;
+}
+
