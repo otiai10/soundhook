@@ -6,22 +6,52 @@ body {
   background-attachment: fixed;
   **/
 }
+
+/****************************** new phase *********************/
+/** tag **/
+div {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/** type **/
+
+
+/** class **/
+div#header {
+  width: 100%;
+}
+
+.contents {
+  max-width: 920px;
+  margin: 0 auto;
+}
+.fill {
+  width: 100%;
+}
+
+div.navbar-inner {
+  -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+      border-radius: 0;
+}
+
+.navbar {
+  margin-bottom: 10px;
+}
+
+/** id **/
 hr {
   color : #dcdcdc;
 }
 
-#in_head {
-  display: none;
-}
+/** relative **/
 
-div {
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-}
-
+/*****************************************************************/
 a.brand, a#drop_account, input.search-query {
   -webkit-transition: outline 0.1s linear;
-  -moz-transition: outline 0.1s linear;
+     -moz-transition: outline 0.1s linear;
 }
 
 ul.footer {
@@ -40,17 +70,12 @@ span.footer {
 #foot_title {
   font-size:medium;
   -webkit-transition: all 0.1s linear;
-  -moz-transition: all 0.1s linear;
+     -moz-transition: all 0.1s linear;
 }
 #foot_title:hover {
   color: #666;
 }
 
-.wrapper {
-  max-width:960px;
-  /** min-width:790px; **/
-  margin: 0 auto;
-}
 .main-container {
   min-width:720px;
   max-width:920px;
@@ -297,14 +322,6 @@ div.twitter_public {
   overflow-y:hidden;
 }
 
-ul.twitter_ul, ul.ul-list-changer {
-  list-style-type: none;
-  display: -webkit-box;
-  display:    -moz-box;
-  display:         box;
-  position:relative;
-}
-
 li.twitter_li {
   /** float:left; **/
   display: -webkit-box;
@@ -355,12 +372,7 @@ a#load_more {
   font-size: 35px;
   text-shadow: 0 1px #fff;
 }
-div#list-changer {
-  margin-top:0;
-}
-ul.ul-list-changer {
-  margin: 0;
-}
+
 li.tab_li {
     text-align: center;
     padding-top: 5px;
@@ -405,24 +417,6 @@ a.twinkle_once {
     -webkit-box-shadow: 0 0 0 #fff,
                   0 0 0 #fff inset;
   }
-}
-
-div#list-indicator {
-    margin-bottom:50px;
-    background-color: #eeeeee;
-}
-div#indicator {
-    position:relative;
-    left:0%;
-    background: -webkit-gradient(linear, left top, right bottom,
-            from(#eeeeee),
-            color-stop(0.1, #eeeeee),  
-            color-stop(0.4, #a0a0a0),  
-            color-stop(0.6, #a0a0a0),
-            color-stop(0.9, #eeeeee),  
-            to(#eeeeee));
-    width: 50%;
-    height: 2px;
 }
 
 img#in_modal_thumbnail {
