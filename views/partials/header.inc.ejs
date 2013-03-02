@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<div id="header fill">
+  <% /* if(rurl.match('dev')){ %><!-- h1><%=rurl%></h1 --><% } */ %>
+  <div class="navbar fill">
+    <div class="navbar-inner">
+      <div class="contents">
+        <a class="brand" href="<%=rurl%>"><span class="lead um">SoundHook  <small>ver0.9.7</small></span></a>
+        <small>Reserved-space:</small>
+        <ul class="nav pull-right">
+          <% if(session.user_profile){ %>
+            <li>
+              <form class="navbar-search pull-right" action="/search">
+                <input type="text" name="qu" class="search-query" placeholder="youtube-search">
+              </form>
+            </li>
+            <li id="fat-menu" class="dropdown">
+              <a  href="#" id="drop_account" role="button" class="um dropdown-toggle" data-toggle="dropdown">
+                <img src="http://api.twitter.com/1/users/profile_image/<%=session.user_profile.screen_name%>" height="20px"/>
+                <%=session.user_profile.screen_name%><b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu hide" role="menu" arial-labeledby="drop_account">
+                <li>
+                  <a tabindex="-1" href="<%=rurl%>listory">listory</a>
+                </li>
+                <li>
+                  <a tabindex="-1" href="<%=rurl%>settings">settings</a>
+                </li>
+                <li>
+                  <a tabindex="-1" href="<%=rurl%>">home</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a tabindex="-1" href="<%=rurl%>signout">sign out</a>
+                </li>
+              </ul>
+            </li>
+          <% }else{ %>
+            <li><a class="um" href="<%=rurl%>auth/twitter">sign in</a></li>
+          <% } %>
+        </ul>
+      </div><!--/.contents-->
+    </div><!--/.navbar-inner-->
+  </div><!--/.navbar-->
+</div>
