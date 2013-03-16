@@ -17,9 +17,9 @@ var oauth = new OAuth(
 exports.bot_follow_process = function(params, callback){
   try{
     oauth.post(
-      conf.friendships_create_api,
-      conf.access_token_bot,
-      conf.access_token_secret_bot,
+      conf.api.friendships_create_api,
+      conf.bot.access_token,
+      conf.bot.access_token_secret,
       {'screen_name': params.screen_name},
       function(err, data){
         callback(err, data);
@@ -33,9 +33,9 @@ exports.bot_follow_process = function(params, callback){
 exports.bot_tweet_process = function(params, callback){
   try{
     oauth.post(
-      conf.status_update_api,
-      conf.access_token_bot,
-      conf.access_token_secret_bot,
+      conf.api.status_update_api,
+      conf.bot.access_token,
+      conf.bot.access_token_secret,
       {status: params.message},
       function(err, data){
         callback(err, data);
