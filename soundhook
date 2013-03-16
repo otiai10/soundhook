@@ -9,20 +9,21 @@ if [ $# -lt 1 ]; then
 fi
 
 if [ $1 = '--restart' ]; then
-    echo "\n - cannot use this parameter yew :p\n\n"
-    #echo "\n\n - stopping SoundHook\n\n"
-    #kill -9 `ps aux | grep cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
-    #kill -9 `ps aux | grep cron_set/cron.sh | grep -v grep | awk {'print $2'}`
-    #kill -9 `pgrep node`
-    #sleep 2s
-    #echo "\n\n - starting SoundHook\n\n"
-    #nohup node app.js > log/node.log &
-    #nohup sh cron_set/watcher.sh > log/watcher.log &
-    #nohup sh cron_set/cron.sh > log/cron.log &
+    echo "RESTARTING..."
+    sleep 1s
+    sh soundhook --stop
+    sleep 1s
+    sh soundhook --start
+    sleep 1s
 elif [ $1 = '--start' ]; then
+    dir=`date "+%Y"`
+    if [ ! -e log/$dir ]; then
+      mkdir log/$dir
+    fi
+    f_path=log/$dir/`date "+%m%d"`.log
     nohup sh   $PWD/cron_set/watcher.sh >  log/watcher.log &
     nohup sh   $PWD/cron_set/cron.sh    >  log/cron.log    &
-    nohup node $PWD/app.js              >> log/node.log    &
+    nohup node $PWD/app.js              >> $f_path         &
 
     sleep 1s
     echo "\n\n -- now starting SoundHook :)\n\n"
