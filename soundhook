@@ -1,26 +1,31 @@
 #!/bin/sh
 
-col=$'\e[01;36m'
-def=$'\e[0m'
-
-if [ $# = 0 ]; then
+if [ $# -lt 2 ]; then
     echo "\nOption Required"
     echo " --start : to start soundhook"
-    echo " --stop  : to stop  soundhook\n\n"
+    echo " --stop  : to stop  soundhook"
+    echo " --state : to check soundhook status\n"
+    echo " second params : 'dev' or 'prod'\n\n"
     exit;
 fi
 
 if [ $1 = '--restart' ]; then
-    echo "\n\n - stopping SoundHook\n\n"
-    kill -9 `ps aux | grep cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
-    kill -9 `ps aux | grep cron_set/cron.sh | grep -v grep | awk {'print $2'}`
-    kill -9 `pgrep node`
-    echo "\n\n - starting SoundHook\n\n"
-    nohup node app.js > log/node.log &
-    nohup sh cron_set/watcher.sh > log/watcher.log &
-    nohup sh cron_set/cron.sh > log/cron.log &
+    echo "\n - cannot use this parameter yew :p\n\n"
+    #echo "\n\n - stopping SoundHook\n\n"
+    #kill -9 `ps aux | grep cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
+    #kill -9 `ps aux | grep cron_set/cron.sh | grep -v grep | awk {'print $2'}`
+    #kill -9 `pgrep node`
+    #sleep 2s
+    #echo "\n\n - starting SoundHook\n\n"
+    #nohup node app.js > log/node.log &
+    #nohup sh cron_set/watcher.sh > log/watcher.log &
+    #nohup sh cron_set/cron.sh > log/cron.log &
 elif [ $1 = '--start' ]; then
-    nohup node app.js > log/node.log &
+    if [ $2 = 'dev' ]; then
+      nohup node /home/ten/node/projects/dev_soundhook/app.js >> log/node.log &
+    else
+      nohup node /home/ten/node/projects/soundhook/app.js >> log/node.log &
+    fi
     nohup sh cron_set/watcher.sh > log/watcher.log &
     nohup sh cron_set/cron.sh > log/cron.log &
     echo " -- now starting SoundHook\n\n"
@@ -33,14 +38,19 @@ elif [ $1 = '--state' ]; then
 elif [ $1 = '--stop' ]; then
     kill -9 `ps aux | grep cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
     kill -9 `ps aux | grep cron_set/cron.sh | grep -v grep | awk {'print $2'}`
-    kill -9 `pgrep node`
+    if [ $2 = 'dev' ]; then
+      kill -9 `ps aux | grep dev_soundhook | grep -v grep | awk {'print $2'}`
+    else
+      kill -9 `ps aux | grep soundhook | grep -v grep | awk {'print $2'}`
+    fi
+    sleep 2s
     echo "\n\n -- now stoped SoundHook \n\n"
     exit;
 elif [ $1 = '--help' ]; then
     echo " Options\n"
     echo "  --start"
     echo "  --state"
-    echo "  --restart"
+    #echo "  --restart"
     echo "  --stop\n"
 else
     echo "illeagal option\n"
