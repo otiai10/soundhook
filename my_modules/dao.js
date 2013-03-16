@@ -2,13 +2,13 @@
  * dao.js
 */
 
-var conf = require('./conf.js').getConf();
+var conf = require('./conf').getConf();
 var mysql = require('mysql').createClient({
-  'host'     : conf.dbhost,
+  'host'     : conf.db.host,
   //'port' : conf.port,
-  'database' : conf.dbname,
-  'user'     : conf.dbuser,
-  'password' : conf.dbpass,
+  'database' : conf.db.name,
+  'user'     : conf.db.user,
+  'password' : conf.db.pass,
 });
 
 exports.dao = {
