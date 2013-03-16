@@ -1,11 +1,10 @@
 #!/bin/sh
 
-if [ $# -lt 2 ]; then
+if [ $# -lt 1 ]; then
     echo "\nOption Required"
     echo " --start : to start soundhook"
     echo " --stop  : to stop  soundhook"
     echo " --state : to check soundhook status\n"
-    echo " second params : 'dev' or 'prod'\n\n"
     exit;
 fi
 
@@ -21,29 +20,23 @@ if [ $1 = '--restart' ]; then
     #nohup sh cron_set/watcher.sh > log/watcher.log &
     #nohup sh cron_set/cron.sh > log/cron.log &
 elif [ $1 = '--start' ]; then
-    if [ $2 = 'dev' ]; then
-      nohup node /home/ten/node/projects/dev_soundhook/app.js >> log/node.log &
-    else
-      nohup node /home/ten/node/projects/soundhook/app.js >> log/node.log &
-    fi
-    nohup sh cron_set/watcher.sh > log/watcher.log &
-    nohup sh cron_set/cron.sh > log/cron.log &
-    echo " -- now starting SoundHook\n\n"
+    nohup sh   $PWD/cron_set/watcher.sh >  log/watcher.log &
+    nohup sh   $PWD/cron_set/cron.sh    >  log/cron.log    &
+    nohup node $PWD/app.js              >> log/node.log    &
+
+    sleep 1s
+    echo "\n\n -- now starting SoundHook :)\n\n"
     exit
 elif [ $1 = '--state' ]; then
-    echo `ps aux | grep cron_set/watcher.sh | grep -v grep`
-    echo `ps aux | grep cron_set/cron.sh | grep -v grep`
-    echo `ps aux | grep node | grep -v grep`
+    echo `ps aux | grep $PWD/cron_set/watcher.sh    | grep -v grep`
+    echo `ps aux | grep $PWD/cron_set/cron.sh       | grep -v grep`
+    echo `ps aux | grep $PWD/app.js                 | grep -v grep`
     exit;
 elif [ $1 = '--stop' ]; then
-    kill -9 `ps aux | grep cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
-    kill -9 `ps aux | grep cron_set/cron.sh | grep -v grep | awk {'print $2'}`
-    if [ $2 = 'dev' ]; then
-      kill -9 `ps aux | grep dev_soundhook | grep -v grep | awk {'print $2'}`
-    else
-      kill -9 `ps aux | grep soundhook | grep -v grep | awk {'print $2'}`
-    fi
-    sleep 2s
+    kill -9 `ps aux | grep $PWD/cron_set/watcher.sh | grep -v grep | awk {'print $2'}`
+    kill -9 `ps aux | grep $PWD/cron_set/cron.sh    | grep -v grep | awk {'print $2'}`
+    kill -9 `ps aux | grep $PWD/app.js              | grep -v grep | awk {'print $2'}`
+    sleep 1s
     echo "\n\n -- now stoped SoundHook \n\n"
     exit;
 elif [ $1 = '--help' ]; then
