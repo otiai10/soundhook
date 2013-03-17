@@ -146,7 +146,9 @@ exports.set = {
             params = {
               message  : mess,
             };
-            util.bot_tweet(params,function(){});
+            if(!conf.isDev()){
+              util.bot_tweet(params,function(){});
+            }
           }
           res.send(result);
         });
