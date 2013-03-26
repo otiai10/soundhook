@@ -36,3 +36,13 @@ div#indicator {
     height: 2px;
 }
 
+p.lead.landing {
+  font-size: 3em;
+  line-height: 3em;
+  text-shadow: 0 2px 0 white;
+}
+
+p.notice {
+  font-size: 0.5em;
+  color: #666;
+}
