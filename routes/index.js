@@ -41,10 +41,12 @@ exports.oauth_twitter = function(req,res){
 exports.oauth_twitter_callback = function(req,res){
   if(req.session.oauth){
     // verifier is given
-    req.session.verifier = req.query.oauth_verifier;
+    req.session.oauth.verifier = req.query.oauth_verifier;
 
     oauth.getOAuthAccessToken(
-      req.session.oauth.tk,req.session.oauth.tk_secret,req.session.oauth.verifier,
+      req.session.oauth.tk,
+      req.session.oauth.tk_secret,
+      req.session.oauth.verifier,
       function(er,oa_ax_tk,oa_ax_tk_secret,results){
         if(er){
           res.send(er);
