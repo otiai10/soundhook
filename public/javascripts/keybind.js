@@ -18,6 +18,10 @@ function keybind(e){
     case 40:
         yt.volumeDown();
       break;
+    case 72://h
+    case 73://i
+        effect.flashKeybindExp();
+      break;
     default:
       // bind nothing so far
   }

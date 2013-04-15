@@ -232,6 +232,8 @@ function init(){
         'height'  : '0',
       });
       $(this).html('<i class="icon-resize-full"></i>');
+      // keybind explain
+      effect.flashKeybindExp();
     },
     function(){ info_this(); $(this).html('<i class="icon-resize-small"></i>'); }
   );
@@ -339,4 +341,8 @@ var effect = {
     var vol = __player.getVolume();
     console.log(vol);
   },
+
+  flashKeybindExp: function(){
+    $("div.keybind-exp").fadeIn(100).delay(2300).fadeOut(800);
+  }
 }
