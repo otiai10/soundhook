@@ -60,6 +60,8 @@ div.keybind-exp {
      -moz-opacity: 0.6;
           opacity: 0.6;
   -webkit-border-radius: 0.2em;
+     -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
   display: none;
 }
 
@@ -72,7 +74,21 @@ div.keybind-exp-area {
 
 div#vol-action {
   position:fixed;
-  left: 500px;
-  top:  300px;
-  z-index:  3;
+  left:  520px;
+  top:    96px;
+  z-index:   3;
+  width:  2em;
+  height: 2em;
+  -webkit-opacity: 0.6;
+     -moz-opacity: 0.6;
+          opacity: 0.6;
+  -webkit-border-radius: 0.2em;
+     -moz-border-radius: 0.2em;
+          border-radius: 0.2em;
+  background-color: #000;
+  color: #fff;
+  font-size: 8em;
+  padding-top: 0.9em;
+  text-align: center;
+  display: none;
 }
