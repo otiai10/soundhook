@@ -2,6 +2,8 @@ playlist = [];
 index    = 0;
 playlist_type = 0;
 
+var __player = {};
+
 $(function(){ //=============================== jQuery Event Handle
 getPlaylist(0);
 init();
@@ -78,6 +80,8 @@ function onYouTubePlayerReady(playerid){
   .addEventListener('onStateChange','statusWatch');
   document.getElementById(playerid)
   .addEventListener('onError','confirmRemove');
+
+  __player = document.getElementById('player');
 }
 
 function confirmRemove(e){
@@ -290,3 +294,49 @@ function init(){
   });
 }
 
+// new version object for youtube controller
+var yt = {
+  playPrev: function(){
+    play_prev();
+    effect.playPrev();
+  },
+
+  playNext: function(){
+    play_next();
+    effect.playNext();
+  },
+
+  volumeUp: function(){
+    var volume_now = __player.getVolume();
+    var volume_new = volume_now + 1;
+    __player.setVolume(volume_new);
+    effect.volumeUp();
+  },
+
+  volumeDown: function(){
+    var volume_now = __player.getVolume();
+    var volume_new = volume_now - 1;
+    __player.setVolume(volume_new);
+    effect.volumeDown();
+  },
+}
+
+var effect = {
+  playPrev: function(){
+
+  },
+
+  playNext: function(){
+
+  },
+
+  volumeUp: function(){
+    var vol = __player.getVolume();
+    console.log(vol);
+  },
+
+  volumeDown: function(){
+    var vol = __player.getVolume();
+    console.log(vol);
+  },
+}
