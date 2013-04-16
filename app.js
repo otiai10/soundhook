@@ -39,12 +39,13 @@ app.dynamicHelpers({
 
 // Routes
 app.get('/',                                       routes.index);
-app.post('/',                                      routes.prepare);
+app.post('/',                                    routes.prepare);
 app.get('/auth/twitter',                   routes.oauth_twitter);
 app.get('/auth/twitter/callback', routes.oauth_twitter_callback);
 app.get('/signout',                              routes.signout);
 app.get('/privacypolicy',                 routes.privacy_policy);
 app.get('/usepolicy',                         routes.use_policy);
+app.get('/help',                                    routes.help);
 
 // API
 app.get('/test',             api.test);

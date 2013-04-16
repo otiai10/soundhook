@@ -166,6 +166,16 @@ exports.privacy_policy = function(req,res){
   )
 };
 
+exports.help = function(req,res){
+  res.render(
+    'help',
+    {
+        title : 'SoundHook - ヘルプ',
+        rurl  : conf.rurl,
+    }
+  )
+}
+
 exports.use_policy = function(req,res){
   res.render(
     'use_policy',
