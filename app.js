@@ -39,6 +39,7 @@ app.dynamicHelpers({
 
 // Routes
 app.get('/',                                       routes.index);
+app.post('/',                                      routes.prepare);
 app.get('/auth/twitter',                   routes.oauth_twitter);
 app.get('/auth/twitter/callback', routes.oauth_twitter_callback);
 app.get('/signout',                              routes.signout);

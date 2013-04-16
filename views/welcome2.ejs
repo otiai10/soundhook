@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="stylesheets/welcome.css">
+
+<!-- page01 -->
+<div class="inline_center">
+  <!--div class="img-container">
+    <div class="img-exp">
+      <img src="/images/exp.png">
+    </div>
+    <div class="img-man">
+      <img src="/images/man.png">
+    </div>
+  </div-->
+  <p class="lead welcome">
+    準備完了ｯｽ<br>
+    <span class="sub">以下の<%= list.length %>曲が登録されました、が...</span>
+  </p>
+  <div id="initial-list">
+    <table class="table"><tbody>
+    <% list.forEach(function(music){ %>
+      <tr><td><img src="http://i.ytimg.com/vi/<%=music.hash%>/1.jpg" width="50px"><%= music.title %></td></tr>
+    <% }) %>
+    </tbody></table>
+  </div>
+  <a class="btn btn-large btn-inverse" href="/?help=1">とりあえず聞く</a>
+  <div>
+    <p class="notice">
+      だいじなことその２<br>
+      SoundHookは、自分の好きなプレイリストを聞き流すだけの<br>
+      なんのヒネリも無い音楽サービスです。<br>
+      でも聞いてるとときどき何かが起こることもあります。
+    </p>
+  </div>
+</div><!--/.inline_center-->
+
+
+<!-- page02 -->
