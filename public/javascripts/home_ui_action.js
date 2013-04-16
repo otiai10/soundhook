@@ -232,6 +232,8 @@ function init(){
         'height'  : '0',
       });
       $(this).html('<i class="icon-resize-full"></i>');
+      // keybind explain
+      effect.flashKeybindExp();
     },
     function(){ info_this(); $(this).html('<i class="icon-resize-small"></i>'); }
   );
@@ -323,20 +325,29 @@ var yt = {
 
 var effect = {
   playPrev: function(){
-
   },
 
   playNext: function(){
-
   },
 
   volumeUp: function(){
     var vol = __player.getVolume();
-    console.log(vol);
+    this.flashVolume(vol);
   },
 
   volumeDown: function(){
     var vol = __player.getVolume();
-    console.log(vol);
+    this.flashVolume(vol);
   },
+
+  flashKeybindExp: function(){
+    $("div.keybind-exp").fadeIn(100).delay(1500).fadeOut(800);
+  },
+
+  flashVolume: function(vol){
+    $("div#vol-action>span").html(vol);
+    $("div#vol-action").queue([]);
+    $("div#vol-action").show().css({opacity:0.6}).hide().fadeIn(100).delay(400).fadeOut(300);
+  }
 }
+
