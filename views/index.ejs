@@ -2,111 +2,68 @@
 <script type="text/javascript" src="javascripts/japanese.js"></script>
 <script type="text/javascript" src="javascripts/home_ui_action.js"></script>
 <link rel="stylesheet" href="stylesheets/index.css">
-
-<% if(session.user_profile){ %>
-    <% if(title.match('-')){ %>
-    <% }else{ %>
-    <!-- list-changer -->
-    <div id="list-changer" class="wrapper">
-      <ul class="ul-list-changer">
-        <li class="tab_li active">
-          <a id="list0" class="tab_anc" list="0" href="#" rel="tooltip" data-original-title="Your playlist" data-placement="left"><img src="/images/glyphicons/png/glyphicons_158_playlist.png"/></a>
-        </li>
-        <li class="tab_li">
-          <a class="tab_anc" list="100" href="#" rel="tooltip" data-original-title="Radio Mode" data-placement="left"><img id="img_radio_mode" src="/images/glyphicons/png/glyphicons_032_wifi_alt.png"/></a>
-        </li>
-      </ul>
-    </div><!-- /list-changer -->
-    <!--list-indicator-->
-    <div id="list-indicator">
-      <div id="indicator"></div>
-    </div><!--/list-indicator-->
-    <% } %>
+<% if(help){ %>
+  <%- partial('partials/tutorial.inc.ejs') %>
 <% } %>
+<!-- list-changer -->
+<div id="list-changer" class="wrapper">
+  <ul class="ul-list-changer">
+    <li class="tab_li active">
+      <a id="list0" class="tab_anc" list="0" href="#" rel="tooltip" data-original-title="Your playlist" data-placement="left"><img src="/images/glyphicons/png/glyphicons_158_playlist.png"/></a>
+    </li>
+    <li class="tab_li">
+      <a class="tab_anc" list="100" href="#" rel="tooltip" data-original-title="Radio Mode" data-placement="left"><img id="img_radio_mode" src="/images/glyphicons/png/glyphicons_032_wifi_alt.png"/></a>
+    </li>
+  </ul>
+</div><!-- /list-changer -->
+<!--list-indicator-->
+<div id="list-indicator">
+  <div id="indicator"></div>
+</div><!--/list-indicator-->
 
-    <% if(!session.user_profile){ %>
-    <!-- this is not-logined visit -->
-      <div class="inline_center">
-        <div class="img-container">
-          <div class="img-exp">
-            <img src="/images/exp.png">
-          </div>
-          <div class="img-man">
-            <img src="/images/man.png">
-          </div>
+<!-- logined visit -->
+<div class="" id="playlist01">
+  <ul class="unstyled">
+    <li>
+      <span id="indx_num" class="lead m_title"></span><span class="lead m_title"> -- </span><span id="music-title" class="lead m_title"></span>
+      <span class="pull_btn_area" style="float:right;"></span>
+      <hr>
+    </li>
+    <li>
+      <table id="controler">
+        <tbody>
+          <tr calss="tb_hover_ignore">
+            <td><button id="prev_btn" class="btn ready"><i class="icon-step-backward"></i></button></td>
+            <td><button id="play_btn" class="btn ready"><i class="icon-play"></i></button></td>
+            <td><button id="next_btn" class="btn ready"><i class="icon-step-forward"></i></button></td>
+            <td id="repeat_mode">
+              <button id="switch_repeat_mode" class="btn ready" enabled="0"><img src="images/repeat-1.png"/></button>
+            </td>
+            <td><button id="info_btn" class="btn ready"><i class="icon-resize-small"></i></button></td>
+            <td id="twitter_btn">
+              <button id="tweet_to_share" class="btn ready"><img src="images/twitter-logo-2.png"/></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+    <li>
+      <div id="video_tl_container">
+        <div id="video_container">
+          <div id="video"></div>
         </div>
-        <p class="lead landing">
-          いつも聞いてるプレイリストに<br>
-          一曲だけ偶然の出会いを
-        </p>
-        <a id="signin_first" class="btn btn-large btn-info" href="/auth/twitter"><b>Sign in with twitter</b></a>
-        <div>
-          <p class="notice">
-            ※ プレイリスト管理用にのみ使用します<br>
-            ※ 自動的なTLへの投稿はありません
-          </p>
+        <div id="tl_container">
         </div>
-        <!-- Button to trigger modal -->
-        <a id="foot_title" href="#myModal" role="button" class="footer" data-toggle="modal">もっとくわしく</a>
-        <!-- Modal -->
-        <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header" style="text-align:left">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
-            <h3 id="myModalLabel" class="lead"><b>Introductions</b></h3>
-          </div>
-          <div class="modal-body" style="text-align:left"> 
-            <%- partial('partials/modal.inc.ejs') %>
-          </div><!--/.modal-body -->
-          <div class="modal-footer">
-            <a href="http://otiai10.com/products/soundhook/" target="_blank">More about soundhoook?</a>
-          </div><!--/.modal-footer-->
-        </div>
-      </div><!--/.inline_center-->
-    <%}else{%>
-    <!-- logined visit -->
-      <div class="" id="playlist01">
-        <ul class="unstyled">
-          <li>
-            <span id="indx_num" class="lead m_title"></span><span class="lead m_title"> -- </span><span id="music-title" class="lead m_title"></span>
-            <span class="pull_btn_area" style="float:right;"></span>
-            <hr>
-          </li>
-          <li>
-            <table id="controler">
-              <tbody>
-                <tr calss="tb_hover_ignore">
-                  <td><button id="prev_btn" class="btn ready"><i class="icon-step-backward"></i></button></td>
-                  <td><button id="play_btn" class="btn ready"><i class="icon-play"></i></button></td>
-                  <td><button id="next_btn" class="btn ready"><i class="icon-step-forward"></i></button></td>
-                  <td id="repeat_mode">
-                    <button id="switch_repeat_mode" class="btn ready" enabled="0"><img src="images/repeat-1.png"/></button>
-                  </td>
-                  <td><button id="info_btn" class="btn ready"><i class="icon-resize-small"></i></button></td>
-                  <td id="twitter_btn">
-                    <button id="tweet_to_share" class="btn ready"><img src="images/twitter-logo-2.png"/></button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          <li>
-            <div id="video_tl_container">
-              <div id="video_container">
-                <div id="video"></div>
-              </div>
-              <div id="tl_container">
-              </div>
-            </div>
-            <div class="keybind-exp-area">
-              <div class="keybind-exp" id="arrow-right">→ : Next</div>
-              <div class="keybind-exp" id="arrow-left" >← : Previous</div>
-              <div class="keybind-exp" id="arrow-up"   >↑ : Vol Up</div>
-              <div class="keybind-exp" id="arrow-down" >↓ : Vol Down</div>
-            </div>
-          </li>
-        </ul>
       </div>
-      <div id="vol-action">
-        <span>30</span>
+      <div class="keybind-exp-area">
+        <div class="keybind-exp" id="arrow-right">→ : Next</div>
+        <div class="keybind-exp" id="arrow-left" >← : Previous</div>
+        <div class="keybind-exp" id="arrow-up"   >↑ : Vol Up</div>
+        <div class="keybind-exp" id="arrow-down" >↓ : Vol Down</div>
       </div>
-    <%}%>
+    </li>
+  </ul>
+</div>
+<div id="vol-action">
+  <span>30</span>
+</div>

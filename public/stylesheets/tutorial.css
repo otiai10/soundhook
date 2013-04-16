@@ -1,0 +1,118 @@
+/**
+ * tutorial.css
+**/
+
+div.tutorial-hidden {
+  position: fixed;
+  z-index:   4;
+  width:  20em;
+  height: 11em;
+  -webkit-opacity: 0.6;
+     -moz-opacity: 0.6;
+          opacity: 0.6;
+  -webkit-border-radius: 0.5em;
+     -moz-border-radius: 0.5em;
+          border-radius: 0.5em;
+  background-color: #000;
+  color: #fff;
+  font-size: 2em;
+  padding: 0.9em;
+  line-height: 1.5em;
+  cursor: pointer;
+}
+
+div.tutorial-hidden#tutorial01 {
+  top:        170px;
+  margin-left: 10px;
+  display:     none;
+}
+
+div.tutorial-hidden#tutorial01:after {
+  content: '';
+  position:absolute;
+  border-bottom: 40px solid #000;
+  border-right:  20px solid transparent;
+  border-left:   20px solid transparent;
+  top: -39px;
+  left: 20px;
+}
+
+div.tutorial-hidden#tutorial02 {
+  top:        100px;
+  margin-left:290px;
+  display:     none;
+}
+
+div.tutorial-hidden#tutorial02:after {
+  content: '';
+  position:absolute;
+  border-right: 40px solid #000;
+  border-top:  20px solid transparent;
+  border-bottom:   20px solid transparent;
+  left: -39px;
+  top: 72px;
+}
+
+div.tutorial-hidden#tutorial03 {
+  top:          62px;
+  margin-left: 310px;
+  display:      none;
+}
+
+div.tutorial-hidden#tutorial03:after {
+  content: '';
+  position:absolute;
+  border-left: 40px solid #000;
+  border-top:  20px solid transparent;
+  border-bottom:   20px solid transparent;
+  right: -39px;
+  top: 35px;
+}
+
+div.tutorial-hidden#tutorial04 {
+  top:         124px;
+  margin-left: 260px;
+  display:      none;
+}
+
+div.tutorial-hidden#tutorial04:after {
+  content: '';
+  position:absolute;
+  border-bottom: 40px solid #000;
+  border-left:  20px solid transparent;
+  border-right:   20px solid transparent;
+  top:  -39px;
+  right: 69px;
+}
+
+div.tutorial-hidden#tutorial05 {
+  top:          88px;
+  margin-left: 430px;
+  display:      none;
+}
+
+div.tutorial-hidden#tutorial05:after {
+  content: '';
+  position:absolute;
+  border-bottom: 40px solid #000;
+  border-left:  20px solid transparent;
+  border-right:   20px solid transparent;
+  top:  -39px;
+  right: 69px;
+}
+
+div.tutorial-hidden#tutorial06 {
+  top:         100px;
+  margin-left:  26px;
+  text-align: center;
+  font-size:   6em;
+  padding: 1em;
+  width: 11em;
+  height: 4em;
+  display: none;
+}
+
+img.in-tutorial {
+  background-color: #fff;
+  padding: 8px;
+}

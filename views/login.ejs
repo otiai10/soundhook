@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script type="text/javascript" src="javascripts/japanese.js"></script>
+<script type="text/javascript" src="javascripts/home_ui_action.js"></script>
+<link rel="stylesheet" href="stylesheets/index.css">
+
+<div class="inline_center">
+  <div class="img-container">
+    <div class="img-exp">
+      <img src="/images/exp.png">
+    </div>
+    <div class="img-man">
+      <img src="/images/man.png">
+    </div>
+  </div>
+  <p class="lead landing">
+    いつも聞いてるプレイリストに<br>
+    一曲だけ偶然の出会いを
+  </p>
+  <a id="signin_first" class="btn btn-large btn-info" href="/auth/twitter"><b>Sign in with twitter</b></a>
+  <div>
+    <p class="notice">
+      ※ プレイリスト管理用にのみ使用します<br>
+      ※ 自動的なTLへの投稿はありません
+    </p>
+  </div>
+  <!-- Button to trigger modal -->
+  <a id="foot_title" href="#myModal" role="button" class="footer" data-toggle="modal">もっとくわしく</a>
+  <!-- Modal -->
+  <div class="modal hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header" style="text-align:left">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+      <h3 id="myModalLabel" class="lead"><b>Introductions</b></h3>
+    </div>
+    <div class="modal-body" style="text-align:left"> 
+      <%- partial('partials/modal.inc.ejs') %>
+    </div><!--/.modal-body -->
+    <div class="modal-footer">
+      <a href="http://otiai10.com/products/soundhook/" target="_blank">More about soundhoook?</a>
+    </div><!--/.modal-footer-->
+  </div>
+</div><!--/.inline_center-->
