@@ -20,3 +20,6 @@ p.notice {
   color: #666;
 }
 
+p.notice>span {
+  color: red;
+}
