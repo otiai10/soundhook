@@ -5,6 +5,7 @@
 
 var api = require('./api.js');
 var conf = require('../my_modules/conf').getConf();
+var dao  = require('../my_modules/dao.js').dao;
 
 var oauth = new (require('oauth').OAuth)(
     conf.request_token,
@@ -17,12 +18,31 @@ var oauth = new (require('oauth').OAuth)(
 );
 
 exports.index = function(req, res){
-  res.render('index', {
-        title: 'SoundHook',
-        //pempl: res.partial('partials/privacy_policy.ejs')
-        list_active : null,
-        rurl        : conf.rurl,
-  })
+  if(req.session.user_profile == void 0){
+    // 未ログイン
+    res.render('login', {
+    //res.render('index', {
+      title : 'Login - SoundHook',
+      rurl  : conf.rurl,
+    })
+  }else{
+    // ユーザのプレイリスト数を評価
+    dao.getMyPlaylist(req.session.user_profile.id, {get_all:true},function(results){
+      if(results.rows.length < 6){
+        res.render('welcome', {
+          title : 'Welcome! - SoundHook',
+          rurl  : conf.rurl,
+        })
+      }else{
+        res.render('index', {
+              title: 'SoundHook',
+              //pempl: res.partial('partials/privacy_policy.ejs')
+              list_active : null,
+              rurl        : conf.rurl,
+        })
+      }
+    });
+  }
 };
 
 exports.oauth_twitter = function(req,res){
