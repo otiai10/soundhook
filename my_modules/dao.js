@@ -109,6 +109,16 @@ exports.dao = {
     );
   },
 
+  searchFromPushed : function(query1, query2, limit, callback){
+    mysql.query(
+      'SELECT * FROM pushed_musics_00 WHERE title LIKE (?) OR title LIKE (?) ORDER BY rand() LIMIT ' + limit,
+      ['%'+query1+'%', '%'+query2+'%'],
+      function(err,rows,fields){
+        callback({'rows':rows});
+      }
+    );
+  },
+
   // set to my playlist
   setToMyPlaylist : function(music,callback){
     mysql.query(create_musics_table);

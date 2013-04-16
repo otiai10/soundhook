@@ -4,13 +4,13 @@
   <div class="navbar fill">
     <div class="navbar-inner">
       <div class="contents">
-        <a class="brand" href="<%=rurl%>"><span class="lead um">SoundHook  <small>ver0.9.8</small></span></a>
-        <small>Reserved-space:</small>
+        <a class="brand" href="<%=rurl%>"><span class="lead um">SoundHook  <small>ver1.0</small></span></a>
+        <!-- small>Reserved-space:</small -->
         <ul class="nav pull-right">
           <% if(session.user_profile){ %>
             <li>
               <form class="navbar-search pull-right" action="/search">
-                <input type="text" name="qu" class="search-query" placeholder="youtube-search">
+                <input type="text" name="qu" class="search-query" placeholder="search video on YouTube">
               </form>
             </li>
             <li id="fat-menu" class="dropdown">
@@ -27,6 +27,9 @@
                 </li>
                 <li>
                   <a tabindex="-1" href="<%=rurl%>">home</a>
+                </li>
+                <li>
+                  <a tabindex="-1" href="<%=rurl%>help">help</a>
                 </li>
                 <li class="divider"></li>
                 <li>

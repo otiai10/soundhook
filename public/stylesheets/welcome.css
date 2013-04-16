@@ -1,0 +1,25 @@
+/**
+ * stylesheet for welcome page
+**/
+
+p.lead.welcome {
+  font-size: 3em;
+  line-height: 1.8em;
+  text-shadow: 0 2px 0 white;
+}
+
+p.lead.welcome>span.sub {
+  font-size: 0.8em;
+  line-height: 1.8em;
+  text-shadow: 0 2px 0 white;
+}
+
+p.notice {
+  margin-top:15px;
+  font-size: 0.8em;
+  color: #666;
+}
+
+p.notice>span {
+  color: red;
+}
