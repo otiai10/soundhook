@@ -92,3 +92,7 @@ div#vol-action {
   text-align: center;
   display: none;
 }
+
+div.share>a>img {
+  width: 24px;
+}

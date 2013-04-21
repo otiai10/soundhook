@@ -147,7 +147,7 @@ td#repeat_mode>button#switch_repeat_mode.enabled>img {
             0 1px 0px #111;
 }
 
-#controler {
+.controler {
   width: 240px;
   /** width: 340px; **/
   margin-bottom: 0;
