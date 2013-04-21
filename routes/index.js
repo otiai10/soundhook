@@ -26,7 +26,6 @@ exports.index = function(req, res){
   if(req.session.user_profile == void 0){
     // 未ログイン
     res.render('login', {
-    //res.render('index', {
       title : 'Login - SoundHook',
       rurl  : conf.rurl,
     })
@@ -41,7 +40,6 @@ exports.index = function(req, res){
       }else{
         res.render('index', {
               title: 'SoundHook',
-              //pempl: res.partial('partials/privacy_policy.ejs')
               list_active : null,
               help        : help,
               rurl        : conf.rurl,
@@ -65,6 +63,7 @@ exports.prepare = function(req,res){
       if(results.rows.length >= CONST.MINIMUM_PLAYLIST_LEN){
         res.render('index', {
           title : 'SoundHook',
+          help  : false,
           rurl  : conf.rurl,
         })
       }else if(req.body.keyword01 || req.body.keyword02){

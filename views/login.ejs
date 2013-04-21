@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<script type="text/javascript" src="javascripts/japanese.js"></script>
 <script type="text/javascript" src="javascripts/home_ui_action.js"></script>
+<script type="text/javascript" src="javascripts/login.js"></script>
 <link rel="stylesheet" href="stylesheets/index.css">
-
+<link rel="stylesheet" href="stylesheets/login.css">
 <div class="inline_center">
-  <div class="img-container">
+  <div class="img-container img-switch">
     <div class="img-exp">
-      <img src="/images/exp.png">
+      <img id="exp-up-down" class="landing-image" src="/images/exp-up.png">
     </div>
     <div class="img-man">
       <img src="/images/man.png">
@@ -16,7 +16,7 @@
     いつも聞いてるプレイリストに<br>
     一曲だけ偶然の出会いを
   </p>
-  <a id="signin_first" class="btn btn-large btn-info" href="/auth/twitter"><b>Sign in with twitter</b></a>
+  <a id="signin_first" class="btn btn-large btn-info img-switch" href="/auth/twitter"><b>Sign in with twitter</b></a>
   <div>
     <p class="notice">
       ※ プレイリスト管理用にのみ使用します<br>
