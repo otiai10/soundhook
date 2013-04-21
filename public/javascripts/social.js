@@ -6,13 +6,13 @@ window.fbAsyncInit = function() {
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
   });
-  FB.ui({ 
-    method: 'feed',
-    name: '名前ってなんだよw',
-    caption: 'ここがセリフなのか',
-    description: 'ですくりぷしょん',
-    link: 'http://soundhook.net/',
-  });
+//  FB.ui({ 
+//    method: 'feed',
+//    name: '名前ってなんだよw',
+//    caption: 'ここがセリフなのか',
+//    description: 'ですくりぷしょん',
+//    link: 'http://soundhook.net/',
+//  });
 };
 // Load the SDK Asynchronously
 (function(d, s, id){
