@@ -127,6 +127,9 @@ td#repeat_mode>button#switch_repeat_mode.enabled>img {
 
 #player {
   margin-top: 10px;
+  -webkit-box-shadow: 5px 10px 30px #ccc;
+     -moz-box-shadow: 5px 10px 30px #ccc;
+          box-shadow: 5px 10px 30px #ccc;
 }
 #player:hover {
   -webkit-opacity: 1;
