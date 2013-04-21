@@ -1,0 +1,11 @@
+/*
+ *
+**/
+img.landing-image {
+  width: 300px;
+  height: 150px;
+}
+
+div.img-man>img {
+  height: 200px;
+}

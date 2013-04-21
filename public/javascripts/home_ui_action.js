@@ -70,7 +70,7 @@ function play_next(){
 function info_this(){
   $("div#video_tl_container").css({
     'opacity' : '1',
-    'height'  : '410',
+    'height'  : '365px',
   });
   togglePublicTimeLine();
 }
@@ -158,7 +158,7 @@ function appear_pull_btn(indx_num){
         'class'     : 'btn btn-info pull_btn ' + playlist[indx_num].hash, 'hash'     :  playlist[indx_num].hash,
         'title'     : playlist[indx_num].title,                           'owner_id' : playlist[indx_num].owner_id,
         'pushed_by' : playlist[indx_num].pushed_by,                       'tabindex' : '0',
-    }).html('<img class="push_icon" src="http://api.twitter.com/1/users/profile_image/' + playlist[indx_num].pushed_by + '" height="30px"/>Add this to your playlist?' + '<br><span class="by">by @' + playlist[indx_num].pushed_by + '</span>')
+    }).html('<!-- img class="push_icon" src="http://api.twitter.com/1/users/profile_image/' + playlist[indx_num].pushed_by + '" height="30px"/ -->Add this to your playlist?' + '<br><span class="by">by @' + playlist[indx_num].pushed_by + '</span>')
     .appendTo(".pull_btn_area");
   }else if(playlist[indx_num].stat === 'removed'){
     $(".pull_btn_area").html('').html('<span class="inserted">already removed</span>'); 
