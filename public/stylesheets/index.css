@@ -95,4 +95,5 @@ div#vol-action {
 
 div.share>a>img {
   width: 24px;
+  cursor: pointer;
 }

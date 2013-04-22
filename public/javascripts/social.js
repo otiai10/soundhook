@@ -6,13 +6,15 @@ window.fbAsyncInit = function() {
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
   });
-//  FB.ui({ 
-//    method: 'feed',
-//    name: '名前ってなんだよw',
-//    caption: 'ここがセリフなのか',
-//    description: 'ですくりぷしょん',
-//    link: 'http://soundhook.net/',
-//  });
+  $("#facebook_to_share").on('click',function(e){
+    FB.ui({ 
+      method: 'feed',
+      name: playlist[index]['title'],
+      caption: 'YouTube via SoundHook',
+      //description: 'ですくりぷしょん',
+      link: 'http://www.youtube.com/watch?v=' + playlist[index]['hash'],
+    });
+  });
 };
 // Load the SDK Asynchronously
 (function(d, s, id){
@@ -23,3 +25,12 @@ window.fbAsyncInit = function() {
  fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+$(function(){
+  // {{{ #tweet_to_share click
+  $("#tweet_to_share").on('click',function(e){
+    option = "width=720,height=280,left=" + e.clientX + ",top=" + e.clientY;
+    share_url = createShareUrl(playlist[index]);
+    window.open('https://twitter.com/intent/tweet?lang=en&hashtags=nowplaying&url=' + share_url ,"",option);
+  });
+  // }}}
+});
