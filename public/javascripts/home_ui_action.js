@@ -278,14 +278,6 @@ function init(){
   });
   // }}}
   
-  // {{{ #tweet_to_share click
-  $("#tweet_to_share").on('click',function(e){
-    option = "width=720,height=280,left=" + e.clientX + ",top=" + e.clientY;
-    share_url = createShareUrl(playlist[index]);
-    window.open('https://twitter.com/intent/tweet?lang=en&hashtags=nowplaying&url=' + share_url ,"",option);
-  });
-  // }}}
-
   // {{{ #repeat-one click
   $("#switch_repeat_mode").on('click',function(){
     if($(this).attr('enabled') === '0'){
