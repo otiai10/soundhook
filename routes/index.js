@@ -19,85 +19,111 @@ var oauth = new (require('oauth').OAuth)(
 );
 
 exports.index = function(req, res){
-  var help = false;
-  if(req.query.help != void 0 && req.query.help == 1){
-    help = true;
-  }
-  if(req.session.user_profile == void 0){
-    // 未ログイン
-    res.render('login', {
-      title : 'Login - SoundHook',
+/******
+ for google adsense
+******/
+  res.render(
+    'use_policy',
+    {
+      title : 'SoundHook - 利用規約',
       rurl  : conf.rurl,
-    })
-  }else{
-    // ユーザのプレイリスト数を評価
-    dao.getMyPlaylist(req.session.user_profile.id, {get_all:true},function(results){
-      if(results.rows.length < CONST.MINIMUM_PLAYLIST_LEN){
-        res.render('welcome', {
-          title : 'Welcome! - SoundHook',
-          rurl  : conf.rurl,
-        })
-      }else{
-        res.render('index', {
-              title: 'SoundHook',
-              list_active : null,
-              help        : help,
-              rurl        : conf.rurl,
-        })
-      }
-    });
-  }
+    }
+  )
+/***
+ END
+***/
+//  var help = false;
+//  if(req.query.help != void 0 && req.query.help == 1){
+//    help = true;
+//  }
+//  if(req.session.user_profile == void 0){
+//    // 未ログイン
+//    res.render('login', {
+//      title : 'Login - SoundHook',
+//      rurl  : conf.rurl,
+//    })
+//  }else{
+//    // ユーザのプレイリスト数を評価
+//    dao.getMyPlaylist(req.session.user_profile.id, {get_all:true},function(results){
+//      if(results.rows.length < CONST.MINIMUM_PLAYLIST_LEN){
+//        res.render('welcome', {
+//          title : 'Welcome! - SoundHook',
+//          rurl  : conf.rurl,
+//        })
+//      }else{
+//        res.render('index', {
+//              title: 'SoundHook',
+//              list_active : null,
+//              help        : help,
+//              rurl        : conf.rurl,
+//        })
+//      }
+//    });
+//  }
 };
 
 exports.prepare = function(req,res){
-  if(req.session.user_profile == void 0){
-    // 未ログイン
-    res.render('login', {
-    //res.render('index', {
-      title : 'Login - SoundHook',
+/******
+ for google adsense
+******/
+  res.render(
+    'use_policy',
+    {
+      title : 'SoundHook - 利用規約',
       rurl  : conf.rurl,
-    })
-  }else{
-    // ユーザのプレイリスト数を評価
-    dao.getMyPlaylist(req.session.user_profile.id, {get_all:true},function(results){
-      if(results.rows.length >= CONST.MINIMUM_PLAYLIST_LEN){
-        res.render('index', {
-          title : 'SoundHook',
-          help  : false,
-          rurl  : conf.rurl,
-        })
-      }else if(req.body.keyword01 || req.body.keyword02){
-        var query01, query02;
-        if(req.body.keyword01 && req.body.keyword02){
-          query01 = req.body.keyword01;
-          query02 = req.body.keyword02;
-        }else{
-          query01 = query02 = String(req.body.keyword01 + req.body.keyword02);
-        }
-        dao.searchFromPushed(query01, query02, CONST.MINIMUM_PLAYLIST_LEN, function(results){
-          for(var i=0; i<results.rows.length; i++){
-            var music = results.rows[i];
-            music.owner_id     = req.session.user_profile.id;
-            music.playlist_num = 0;//これなくそうよ
-            dao.setToMyPlaylist(music, function(success){
-              //do nothing
-            });
-          }
-          res.render('welcome2', {
-                title: 'Congrats! - SoundHook',
-                list_active : null,
-                rurl        : conf.rurl,
-                list        : results.rows,
-          })
-        })
-      }else{
-        res.render('welcome', {
-          title : 'Welcome! - SoundHook',
-          rurl  : conf.rurl,
-        })
-      }
-    });
-  }
+    }
+  )
+/***
+ END
+***/
+//  if(req.session.user_profile == void 0){
+//    // 未ログイン
+//    res.render('login', {
+//    //res.render('index', {
+//      title : 'Login - SoundHook',
+//      rurl  : conf.rurl,
+//    })
+//  }else{
+//    // ユーザのプレイリスト数を評価
+//    dao.getMyPlaylist(req.session.user_profile.id, {get_all:true},function(results){
+//      if(results.rows.length >= CONST.MINIMUM_PLAYLIST_LEN){
+//        res.render('index', {
+//          title : 'SoundHook',
+//          help  : false,
+//          rurl  : conf.rurl,
+//        })
+//      }else if(req.body.keyword01 || req.body.keyword02){
+//        var query01, query02;
+//        if(req.body.keyword01 && req.body.keyword02){
+//          query01 = req.body.keyword01;
+//          query02 = req.body.keyword02;
+//        }else{
+//          query01 = query02 = String(req.body.keyword01 + req.body.keyword02);
+//        }
+//        dao.searchFromPushed(query01, query02, CONST.MINIMUM_PLAYLIST_LEN, function(results){
+//          for(var i=0; i<results.rows.length; i++){
+//            var music = results.rows[i];
+//            music.owner_id     = req.session.user_profile.id;
+//            music.playlist_num = 0;//これなくそうよ
+//            dao.setToMyPlaylist(music, function(success){
+//              //do nothing
+//            });
+//          }
+//          res.render('welcome2', {
+//                title: 'Congrats! - SoundHook',
+//                list_active : null,
+//                rurl        : conf.rurl,
+//                list        : results.rows,
+//          })
+//        })
+//      }else{
+//        res.render('welcome', {
+//          title : 'Welcome! - SoundHook',
+//          rurl  : conf.rurl,
+//        })
+//      }
+//    });
+//  }
 };
 
 exports.oauth_twitter = function(req,res){
